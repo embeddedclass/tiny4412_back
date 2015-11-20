@@ -1,0 +1,55 @@
+Git Exercise
+
+1. Clone code to local
+	#git clone https://github.com/xlloss/tiny4412-uboot.git
+
+2. modify something
+	#gedit README
+
+3. check source status
+	#git status
+
+4. use "git add <file>..." to update what will be committed
+	git add ./README
+
+5. check status again
+	git status
+
+6. commit code to local repository
+	#git commit -a “test” Or	#git commit
+
+7. check log
+	#git log
+
+8. check how many branch in local repository
+	#git branch
+
+9. create new branch in local repository
+	#git branch  “new_branch_name”
+	for example " #git branch slash_uboot
+
+10. check out to new branch
+	#git checkout “branch_name”
+	#git checkout slash_uboot
+
+11. check branch again
+	#git branch
+
+12 . push log branch to remote
+	#git push origin slash-uboot
+
+13. check remote branch status
+	#git branch origin/ and push tab x2 
+
+reset your code, but modify code still live
+	#git reset commit hash coed
+
+Hard reset your code, all modify code will discard
+	#git reset - -hard hash coed
+
+Check log
+	#git log
+	#git show
+
+Download objects and refs from another repository
+	#git fetch [--all]

@@ -1,0 +1,24 @@
+Build NFS environment
+
+1. sudo apt-get install nfs-kernel-server nfs-common portmap
+
+2. configure portmap
+   1.	sudo vim /etc/default/portmap
+   2.	del 127.0.0.1
+
+3. comfigure exports
+   1.	sudo gedit /etc/exports
+   2.	add ur share file forder
+
+   example :
+ 	 /home/xlloss/nfs_root *(rw,sync,no_root_squash) -->rw ok
+   	*: any ip can entry this
+
+4. restart 
+
+   1.	sudo /etc/init.d/portmap restart
+   2.	sudo /etc/init.d/nfs-kernel-server restart 
+
+5. local test
+   1.	sudo mount -t nfs 192.168.1.240:/home/xlloss/nfs_root /mnt/
+  
