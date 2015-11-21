@@ -11,7 +11,8 @@ Build NFS environment
    2.	add ur share file forder
 
    example :
- 	 /home/xlloss/nfs_root *(rw,sync,no_root_squash) -->rw ok
+ 	 /home/cadtc/tiny4412/Day1/root_mkfs *(rw,sync,no_root_squash)
+
    	*: any ip can entry this
 
 4. restart 
@@ -19,6 +20,16 @@ Build NFS environment
    1.	sudo /etc/init.d/portmap restart
    2.	sudo /etc/init.d/nfs-kernel-server restart 
 
-5. local test
-   1.	sudo mount -t nfs 192.168.1.240:/home/xlloss/nfs_root /mnt/
+5. Host :
+	ifconfig ethx 192.168.0.10
+
+6.	sudo tar -xvjf root_mkfs.tar.bz2
+
+
+7. local test
+   1.	sudo mount -t nfs 192.168.0.10:/home/cadtc/tiny4412/Day1/root_mkfs /mnt/
+
+8.	ls -l /mnt
+
+9.	sudo umount /mnt
   
