@@ -1,0 +1,9 @@
+1.	cd u-boot source code directory
+
+2.
+	a.	patch -p3 < [PATCH/]tiny4412/Day3/Day-3-U-Boot-exerise/exerise2/config_mk.patch
+	b.	patch -p3 < [PATCH/]tiny4412/Day3/Day-3-U-Boot-exerise/exerise2/s5p_gpio.patch
+
+3.	re-build u-boot
+
+4.	update u-boot to eMMC

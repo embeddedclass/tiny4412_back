@@ -1,0 +1,16 @@
+SD boot - Make SD boot card
+
+1.find pre-build binary file
+
+2.Below is pre-build binary file
+	ls ~/tiny4412/Day3/uboot-tiny4412/sd_fuse/tiny4412/E4412_N.bl1.bin
+	ls ~/tiny4412/Day3/uboot-tiny4412/sd_fuse/tiny4412/mkbl2.bin
+	ls ~/tiny4412/Day3/uboot-tiny4412/sd_fuse/tiny4412/E4412_tzsw.bin
+	ls ~/tiny4412/Day3/uboot-tiny4412/u-boot.bin
+
+3.Format SD card
+
+	PC-Linux# sudo ~/tiny4412/Day3/uboot-tiny4412/sd_fuse/sd_fdisk /dev/sdx (/dev/sdb)
+
+4.Run image install script
+	PC-Linux# sudo ~/tiny4412/Day3/uboot-tiny4412/sd_fuse/tiny4412/sd_fusing.sh

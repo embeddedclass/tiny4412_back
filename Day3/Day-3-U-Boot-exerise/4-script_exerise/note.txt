@@ -1,0 +1,43 @@
+========================================================================
+					[ create script in u-boot ]
+========================================================================
+
+
+
+
+------------------------------------------------------------------------
+1.	read setenv help
+------------------------------------------------------------------------
+
+	# help setenv
+	setenv - set environment variables
+	
+	Usage:
+	setenv name value ...
+		- set environment variable 'name' to 'value ...'
+	setenv name
+		- delete environment variable 'name'
+
+
+------------------------------------------------------------------------
+2.	create our script, [ eMMC update script ]
+------------------------------------------------------------------------
+
+	#setenv emmc_update_uboot 'setenv mmc_device 0;emmc open $mmc_device;mmc write $mmc_device 0xc0000000 0x30 0x21D;emmc close $mmc_device'
+
+	#saveenv
+
+------------------------------------------------------------------------
+3.	use "eMMC update script" in u-boot
+------------------------------------------------------------------------
+
+	a.	[ Target ]
+		#dnw
+
+	b.	[ Host ]
+		sudo ~/tiny4412/Day1/dnw/dnw ~/tiny4412/Day3/uboot-tiny4412/u-boot.bin
+
+	c.	[ Target ] : run script
+		#run emmc_update_uboot
+
+	d.	re-boot to test

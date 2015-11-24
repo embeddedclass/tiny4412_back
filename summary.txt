@@ -1,0 +1,101 @@
+========================================================================
+							Summary
+========================================================================
+
+
+1.	----------------------- <	Hardware	> --------------------------
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/Tiny4412_HW.pdf
+
+	a.	Select Boot medthod
+	
+			a.	SD Boot
+			b.	eMMC boot
+	
+	b.	Install serial port to Host PC (x86 PC)
+	
+	c.	Install microUSB to Host PC (x86 PC)
+	
+	d.	Install ethnet  to Host PC (x86 PC)
+	
+
+
+2.	----------------------- <   Boot   > -------------------------------
+
+	a.	SD boot :
+		document : tiny4412/Day1/Day-1-Develop_Env_exerise/SD_Boo.txt
+		document : tiny4412/Day3/Day-3-U-Boot-exerise/SD_Boo.txt
+	
+	b.	eMMC boot :
+		document : tiny4412/Day1/Day-1-Develop_Env_exerise/emmc_boot.txt
+		document : tiny4412/Day3/Day-3-U-Boot-exerise/emmc_boot.txt
+
+
+
+3.	----------- < Build DNW Transmit Application  > -----------
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/Day1_Exerise.txt
+	search key word : "Build DNW Transmit Application"
+
+
+
+
+4.	---------- < Setting Cross Tool chain > -----------------------------
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/Day1_Exerise.txt
+	search key word : "Setting and Test Tool chain"
+
+
+
+
+5.	------------------- < NFS Setting > --------------------------------
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/NFS_setting.txt
+
+
+
+
+6.	------------------- < Download kernel Image > ----------------------
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/Day1_Exerise.txt
+	search key word : "Download and Booting kernel Image"
+
+
+
+
+7.	------------------- < How to build library > -----------------------
+	a. 	ststic library
+	b.	share library
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/ch3_gnu_software.pdf
+	P.24 - 27
+	example : tiny4412/Day2/Day-2-Toolchain_Makefile_exerise/3-build_library
+
+
+
+
+8.	------------------- < Makefile > --------------------------------
+	document : tiny4412/Day1/Day-1-Develop_Env_exerise/ch3_gnu_software.pdf
+	P.10 - 22
+	example : tiny4412/Day2/Day-2-Toolchain_Makefile_exerise/3-build_library
+
+
+
+9.	------------------- < U-boot > --------------------------------
+	Modify u-boot prompt string
+	tiny4412/Day3/Day-3-U-Boot-exerise/2-prompt_exerise/2-modify_prompt_string.txt
+
+
+
+
+
+10.	--------< U-boot - Create customer command  > ----------------------
+	tiny4412/Day3/Day-3-U-Boot-exerise/3-create_cmd_exerise/cmd_helloworld/
+
+
+
+
+
+11.	--------< U-boot - Create customer script  > -----------------------
+	tiny4412/Day3/Day-3-U-Boot-exerise/4-script_exerise/cmd_helloworld/
+
+
+
+
+
+12.	--------< U-boot - update u-boot to eMMC  > -----------------------
+	tiny4412/Day3/Day-3-U-Boot-exerise/5-write-kernel-eMMC-exerise/

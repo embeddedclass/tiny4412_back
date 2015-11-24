@@ -1,0 +1,62 @@
+GDB
+
+==================================================================
+					build code
+==================================================================
+	x86-PC:
+		1.	export CROSS_COMPILE
+		2.	#make
+
+	ARM:
+		source your toolchain setting file (xxxx.sh file)
+		1.	source ~/tiny4412/set_arm_4412_toolchain_path.sh
+		2.	#make
+
+
+==================================================================
+					x86-PC
+==================================================================
+1. Local debug (on target)
+	1)  gdb ./exerise
+
+	;show main functin
+	2)  (gdb) l main
+
+	;set breakpoint on line 11
+	3)  (gdb) b 11
+
+	; run
+	4)  (gdb) r
+	5)  (gdb) b 5
+
+	; Continue execution to next break point.
+	6) c
+
+	;check var x value of func_add
+	7) 	(gdb) x &x
+
+	;check var y value of func_add
+	8) 	(gdb) x &y
+
+
+
+
+==================================================================
+					ARM
+==================================================================
+
+1. Local debug (on target)
+	ROOT_MKFS_PATH : ~/tiny4412/root_mkfs
+
+	1)  HOST : sudo cp -a /home/cadtc/tiny4412/Day2/Day-2-Toolchain_Makefile_exerise/5-gdb_exerise/ $ROOT_MKFS_PATH/home/4412/
+	2)  TARGET : cd home/4412/5-gdb_exerise
+	3)  gdb ./exerise
+	4)  (gdb) l main ;show main functin
+	5)  (gdb) b 17 ;set breakpoint on line 17
+	6)  (gdb) r ; run
+	7)  (gdb) info all-register ; check arm register
+	8)  (gdb) frame ; so far locate..
+	9)  (gdb) b 5
+	10) (gdb) c ; Continue execution to next break point.
+	11) (gdb) x &x ;check var x value of func_add
+	12) (gdb) x &y ;check var y value of func_add
