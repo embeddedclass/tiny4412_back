@@ -1,0 +1,157 @@
+Introduction :
+
+
+	Small video "capture program" ideal for webcam testing and problem debugging.
+
+	reference to http://www.quickcamteam.net/software/linux/v4l2-software/luvcview/
+
+1.setting up your kernel configuration with this options to support UVC type USB video webcam
+
+
+	    *check the list on both website .To know what type cam you are using now....
+
+        UVC:http://www.ideasonboard.org/uvc/
+        GSPCA:http://www.mjmwired.net/kernel/Documentation/video4linux/gspca.txt
+
+        Device Drivers  --->
+                Multimedia devices  --->
+                         [*] Video capture adapters  --->
+                                 [*]   V4L USB devices  --->
+                                        <*>   USB Video Class (UVC)
+                                        [*]     UVC input events device support
+                                        <*>   GSPCA based webcams  --->
+                                                <*>   SONIX JPEG USB Camera Driver
+
+                         <*> Video For Linux
+
+2. Download luvcview_port.tar.bz2 and decompress from /day5/ 
+	(*this version has been modified and ifferent from original version)
+
+3. plug in UVC webcam to Tiny4412 ,make Makefile,upload to Tiny4412 
+ 
+
+	$make -j8
+	$cp luvcview ~/root_mkfs	
+
+
+4. run luvcview with UVC webcam plugged into Tiny4412
+
+	*before you run luvcview , chenc if the UVC camera has been installed and shows /dev/video15
+
+		[root@Tiny4412 /]# ls /dev/video*
+		/dev/video0   /dev/video12  /dev/video2   /dev/video6
+		/dev/video1   /dev/video13  /dev/video3   /dev/video7
+		/dev/video10  /dev/video14  /dev/video4   /dev/video8
+		/dev/video11  /dev/video15  /dev/video5   /dev/video9
+
+
+
+	*you can check the parameter what luvcview has
+		[root@Tiny4412 /]# ./luvcview -h
+		luvcview version v0.2.4 
+		usage: uvcview [-h -d -g -f -s -i -c -o -C -S -L -l -r] 
+		-h      print this message 
+		-d      /dev/videoX       use videoX device
+		-g      use read method for grab instead mmap 
+		-w      disable SDL hardware accel. 
+		-f      video format  default jpg  others options are yuv jpg 
+		-i      fps           use specified frame interval 
+		-s      widthxheight      use specified input size 
+		-c      enable raw frame capturing for the first frame
+		-C      enable raw frame stream capturing from the start
+		-S      enable raw stream capturing from the start
+		-o      avifile  create avifile, default video.avi
+		-L      query valid video formats
+		-l      query valid controls and settings
+		-r      read and set control settings from luvcview.cfg
+		-O      get picture.
+
+
+5. check the image format Camera support.
+
+		[root@Tiny4412 /]# ./luvcview -d /dev/video15 -L
+		luvcview version v0.2.4 
+		video /dev/video15 
+		/dev/video15 does not support read i/o
+		{ pixelformat = 'YUYV', description = 'YUV 4:2:2 (YUYV)' }
+		{ discrete: width = 640, height = 480 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 160, height = 120 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 176, height = 144 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 320, height = 240 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 352, height = 288 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 640, height = 360 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 640, height = 400 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ pixelformat = 'MJPG', description = 'MJPEG' }
+		{ discrete: width = 640, height = 480 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 160, height = 120 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 176, height = 144 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 320, height = 240 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 352, height = 288 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 640, height = 360 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+		{ discrete: width = 640, height = 400 }
+		        Time interval between frame: 1/30, 1/25, 1/20, 1/15, 1/10, 1/5, 
+
+
+
+5. get a picture [For mjpg]
+		
+
+		*stop it by ctrl+c
+		[root@Tiny4412 /]# ./luvcview -O -d /dev/video15 -f jpg
+		luvcview version v0.2.4 
+		video /dev/video15 
+		Width = 320
+		Height = 240
+		Image size = 153600
+		pixelformat = 1448695129
+		get picture yuv...
+		get picture !
+		get picture yuv...
+		get picture !
+		get picture yuv...
+		get picture !
+		get picture yuv...
+		get picture !
+		get picture yuv...
+
+		*There should be pictures with extension *pnm generated in ~/root_mkfs
+			
+		[For yuv]
+		[root@Tiny4412 /]# ./luvcview -O -d /dev/video15 -f yuv
+
+
+6.stream capture
+
+		*capture video 
+		[root@Tiny4412 /]# ./luvcview -S -d /dev/video15
+		luvcview version v0.2.4 
+		video /dev/video15 
+		Width = 320
+		Height = 240
+		Image size = 153600
+		pixelformat = 1448695129
+		Starting raw stream capturing to stream.raw ...
+			
+		*stop it by ctrl+c and need a while to fully stop the capturing
+
+		*There should be "stream.raw" stored in the same folder and play it with MPlayer
+		
+		[root@Tiny4412 /]# ./mplayer -vo fbdev -demuxer rawvideo -rawvideo w=320:h=240:format=yuy2 stream.raw -loop 0
+		
+		*Here we list the UVC webcam we have tried on this utility 			
+		             ->logitech UVC Camera (046d:080f),UVC
+		             ->sonix USB 2.0 Camera (0c45:6340),UVC
+			     ->sonix USB 2.0 Camera (0c45:62f1),UVC <== (YUV only)	

@@ -1,0 +1,28 @@
+
+========================================================================
+						Configure ffmpeg
+========================================================================
+
+
+	./configure --cross-prefix=arm-linux- --enable-cross-compile --target-os=linux --cc=arm-linux-gcc --arch=arm --cpu=armv5te --prefix=/media/mmc2/ffmpeg --enable-shared --disable-static --enable-gpl --enable-ffmpeg --disable-ffplay --disable-ffserver --enable-swscale --enable-pthreads --disable-armv5te --disable-yasm --disable-stripping --enable-gpl --disable-network --enable-avfilter
+
+
+
+
+========================================================================
+						Build source
+========================================================================
+
+	a )	make -j4
+
+
+	
+========================================================================
+						install and test
+========================================================================
+
+	a )	make install
+
+	b )	record video 
+		ffmpeg -f video4linux2 -s 320x240 -r 10 -i /dev/video0  /slash.avi	--->mpeg4
+		ffmpeg -f video4linux2 -s 320x240 -r 20 -i /dev/video0  /slash.mpeg	--->mpeg1
