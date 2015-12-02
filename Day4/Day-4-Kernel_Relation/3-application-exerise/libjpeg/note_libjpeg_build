@@ -1,0 +1,23 @@
+========================================================
+					libjpeg_build
+========================================================
+[ Host ]
+
+********************************************************
+* 		please check arm tool chain if setting or not  *
+********************************************************
+
+0.	tar -xvzf jpegsrc.v6b.tar.gz
+1.	cd jpeg-6b
+2.	./configure --help
+3.	./configure --host=arm-none-linux-gnueabi CC=arm-none-linux-gnueabi-gcc --prefix=./_install
+4.	make
+5.	make -n install
+6.	make install
+7.	cp -a _install/bin/* ~/tiny4412/Day1/root_mkfs/usr/bin
+8.	cp testimg.jpg $TARGET/ROOTFS/
+
+[ Target ]
+
+1.	djpeg -grayscale -bmp ./testimg.jpg  >> slash.bmp
+2.	check slash.bmp from host pc tool

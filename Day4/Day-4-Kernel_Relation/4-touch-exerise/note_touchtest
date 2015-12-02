@@ -1,0 +1,59 @@
+------------------------------------------------------------------------
+			Check kernel configure about touch driver
+------------------------------------------------------------------------
+
+	*Kernel input subsystem interface
+	
+			Device Drivers  --->
+					Input device support  --->
+							[*]   Touchscreens  --->
+									<*>   Tiny4412 1-Wire host and Touch Screen Driver
+									<*>   FocalTech ft5x0x TouchScreen driver
+
+
+------------------------------------------------------------------------
+		*if you turn on the UVC devices in menuconfig,
+		the /dev/input/event2 for touchscreen might replace by plugging
+		into UVC device and shifted to /dev/input/event3.
+		code need to be motified/don't plug any UVC devices
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+			check input event
+------------------------------------------------------------------------
+
+	*Target side User space mode
+	cat /dev/input/event0  => Touchscreen
+
+------------------------------------------------------
+
+	1. ls ~/tiny4412/Day4/Day-4-Kernel_Relation/4-exerise/touchtet.c
+
+	2. Modify touchTest.c
+
+		#define TS_DEV "/dev/input/event0"
+
+	3. compile touchtest.c and copy to NFS root_mkfs		
+
+		arm-linux-gcc -o touchtest touchtest.c
+
+		cp touchtest ~/tiny4412/Day1/root_mkfs/root_mkfs/
+
+	4.	execute touchtest and touch the LCD panel
+	
+		$./touchtest
+	
+			===============================================
+			[root@Tiny4412 /]# ./touchtest 
+			[  540.725000] wm97xx-ts 0-0:WM9713: No IRQ specified
+			type: EV_ABS, event = ABS_X, value = 1365
+			type: EV_ABS, event = ABS_Y, value = 2869
+			type: EV_ABS, event = ABS_PRESSURE, value = 192
+			type: EV_KEY, event = BTN_TOUCH, value = 1
+			type: EV_SYN, event = SYN_REPORT, value = 0
+			type: EV_ABS, event = ABS_X, value = 1367
+			type: EV_ABS, event = ABS_Y, value = 2879
+			type: EV_SYN, event = SYN_REPORT, value = 0
+			===============================================
+	
+		*the x,y value should be reanged between 800,480
