@@ -11,8 +11,7 @@
 	2. decompress MPlayer-1.0rc4.tar.bz2
 =====================================================================
 
-	# tar -jxvf MPlayer-1.0rc4.tar.bz2 
-
+	# tar -jxvf MPlayer-1.0rc4.tar.bz2  && cd MPlayer-1.0rc4/
 
 
 =====================================================================
@@ -20,14 +19,25 @@
 =====================================================================
 
 	a )
-		$./configure --host-cc=gcc --cc=arm-linux-gcc --target=arm-linux --enable-fbdev --enable-static --disable-dvdread --disable-live --disable-mp3lib --enable-mad --disable-win32dll --disable-mencoder --disable-ivtv --disable-dvdnav --disable-dvdread-internal --disable-libdvdcss-internal --enable-libavcodec_a
+		# ./configure --host-cc=gcc --cc=arm-none-linux-gnueabi-gcc \
+--target=arm-linux --enable-fbdev --disable-dvdread --disable-live \
+--disable-mp3lib --enable-mad --disable-win32dll --disable-mencoder \
+--disable-ivtv --disable-dvdnav --disable-dvdread-internal \
+--disable-libdvdcss-internal --enable-libavcodec_a --prefix=./install
 
 	b )
 		$make -j8
 
 	c )
-		ls -l mplayer
+	************************************************************
+		install: strip process terminated abnormally
+		将config.mak中 INSTALLSTRIP=-s，-s去掉即可
+	************************************************************		
+		make -n install
+		make install
 
+	d ) sudo cp -a ./install/bin ~/tiny4412/Day1/root_mkfs/usr/bin
+		sudo cp -a ./install/lib ~/tiny4412/Day1/root_mkfs/usr/lib
 
 
 =====================================================================
@@ -35,7 +45,7 @@
 	(sonix chip idVendor=0c45, idProduct=6340) into Tiny4412 and run "mplayer"
 =====================================================================
 
-    [root@Tiny4412 /]#  ./mplayer -vo fbdev -fps 15 tv:// -tv  driver=v4l2:device=/dev/video15 -vf scale=800:480
+    [root@Tiny4412 /]#mplayer -vo fbdev -fps 15 tv:// -tv  driver=v4l2:device=/dev/video15 -vf scale=800:480
 
 	*There should be frames on the screen
 
