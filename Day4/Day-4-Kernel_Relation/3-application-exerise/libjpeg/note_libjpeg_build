@@ -7,15 +7,29 @@
 * 		please check arm tool chain if setting or not  *
 ********************************************************
 
-0.	tar -xvzf jpegsrc.v6b.tar.gz
+0.
+	wget http://www.ijg.org/files/jpegsrc.v6b.tar.gz
+	tar -xvzf jpegsrc.v6b.tar.gz
+
 1.	cd jpeg-6b
+
 2.	./configure --help
-3.	./configure --host=arm-none-linux-gnueabi CC=arm-none-linux-gnueabi-gcc --prefix=./_install
+
+3.
+	./configure --host=arm-none-linux-gnueabi CC=arm-none-linux-gnueabi-gcc --prefix=./install
+
+
 4.	make
-5.	make -n install
+
+5.
+	a.	mkdir -p ./install/bin &&  mkdir -p ./install/man/man1
+	b.	make -n install
+	
 6.	make install
-7.	cp -a _install/bin/* ~/tiny4412/Day1/root_mkfs/usr/bin
-8.	cp testimg.jpg $TARGET/ROOTFS/
+
+7.	sudo cp -a ./install/bin/* ~/tiny4412/Day1/root_mkfs/usr/bin
+
+8.	sudo cp ./testimg.jpg ~/tiny4412/Day1/root_mkfs
 
 [ Target ]
 
