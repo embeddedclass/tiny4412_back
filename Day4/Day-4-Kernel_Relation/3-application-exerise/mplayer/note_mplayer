@@ -45,7 +45,7 @@
 	(sonix chip idVendor=0c45, idProduct=6340) into Tiny4412 and run "mplayer"
 =====================================================================
 
-    [root@Tiny4412 /]#  ./mplayer -vo fbdev -fps 15 tv:// -tv  driver=v4l2:device=/dev/video15 -vf scale=800:480
+    [root@Tiny4412 /]#mplayer -vo fbdev -fps 15 tv:// -tv  driver=v4l2:device=/dev/video15 -vf scale=800:480
 
 	*There should be frames on the screen
 
