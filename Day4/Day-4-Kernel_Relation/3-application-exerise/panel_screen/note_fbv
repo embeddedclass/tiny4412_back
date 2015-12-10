@@ -10,59 +10,50 @@
 		1.	decompress "fbv-0.99.tar.gz"
 =======================================================================
 
-	# tar xvf fbv-0.99.tar.gz
+	# tar xvf fbv-1.0b.tar.gz
 
 
 =======================================================================
 		3.	Configure and build source code
 =======================================================================
 
-	# cd fbv-0.99
-	# ./configure
-	# make
-		might generate many warning/error messages like below	
-
-		****************************************************************
-		arm-linux-gcc -O2 -Wall    -c -o main.o main.c
-        arm-linux-gcc -O2 -Wall    -c -o jpeg.o jpeg.c
-        arm-linux-gcc -O2 -Wall    -c -o gif.o gif.c
-        arm-linux-gcc -O2 -Wall    -c -o png.o png.c
-        png.c: In function 'fh_png_load':
-        png.c:108: warning: pointer targets in assignment differ in signedness
-        png.c:114: warning: pointer targets in initialization differ in signedness
-        png.c:131: warning: pointer targets in assignment differ in signedness
-        arm-linux-gcc -O2 -Wall    -c -o bmp.o bmp.c
-        arm-linux-gcc -O2 -Wall    -c -o fb_display.o fb_display.c
-        arm-linux-gcc -O2 -Wall    -c -o resize.o resize.c
-        arm-linux-gcc -O2 -Wall  -o fbv main.o jpeg.o gif.o png.o bmp.o fb_display.o resize.o -ljpeg
-        gif.o: In function `fh_gif_getsize':
-        gif.c:(.text+0x74): undefined reference to `DGifOpenFileName'
-        png.c:(.text+0x464): undefined reference to `png_set_expand'
-        ............................................................
-        ............................................................
-        ............................................................
-        png.c:(.text+0x470): undefined reference to `png_set_strip_16'
-        collect 2: ld returned 1 exit status
-        make: *** [fbv] Error 1
-		****************************************************************
-
-
+	# cd fbv-1.0b
+	# ./configure --without-libungif --without-libpng
+	# cp -a ../../libjpeg/jpeg-6b/install/lib/* ./
 
 =======================================================================
-		4.	download, compile, make
+		4.	Modify Makefile
+=======================================================================
+	
+	# geany ./Makefile
+
+	a ) add below in Makefile
+		CFLAGS  = -O2 -Wall -D_GNU_SOURCE -I/home/cadtc/tiny4412/Day4/Day-4-Kernel_Relation/3-application-exerise/panel_screen/fbv-1.0b/
+
+	b ) add below in Makefile
+		LIBS	= -ljpeg
+	
+	c ) build code
+		# make 
+
+	d ) Copy execute file to target
+		cp -a ./fbv ~/tiny4412/Day1/root_mkfs
+	
+???????????????????????????????????????????????????????????????????????
+		5.	download, compile, make
 			libpng-1.4.1.tar.bz2 and libungif-4.1.4.tar.gz
-=======================================================================
+???????????????????????????????????????????????????????????????????????
 
 
 		$ tar xvf libpng-1.4.1.tar.bz2
 		$ cd ~/libpng-1.4.1
-		$ ./configure --host=arm-linux CC=arm-linux-gcc --prefix=/usr/local/arm/4.5.1/arm-none-linux-gnueabi/
+		$ ./configure --host=arm-linux CC=arm-linux-gcc --prefix=./install
 		$ make -j4
 		$ make install	
 	
 		$ tar xvf libungif-4.1.4.tar.gz
 		$ cd ~/libungif-4.1.4
-		$ ./configure --host=arm-linux CC=arm-linux-gcc --prefix=/usr/local/arm/4.5.1/arm-none-linux-gnueabi/
+		$ ./configure --host=arm-linux CC=arm-linux-gcc --prefix=./install
 		$ make -j4
 		$ make install
 
@@ -75,23 +66,8 @@
 		then "fbv" is generated in current directory and copy it/JPEG picture to ~/tiny4412/Day1/root_mkfs
 
 
-
 =======================================================================
-		3 run ./fbv demo.jpg on Tiny4412
+		6 run ./fbv demo.jpg and bmp on Target
 =======================================================================
-	#./fbv demo1.jpg
-	==================================================
-	./fbv: error while loading shared libraries: libpng14.so.14: cannot open shared object file: No such file or directory
-	===================================================
-	
-	copy related png/gif libraries to Tiny4412
-
-	cp -rf ~tiny4412/opt/FriendlyARM/toolschain/4.5.1/arm-none-linux-gnueabi/lib/*png*  ~/tiny4412/Day1/root_mkfs/lib
-	cp -rf ~tiny4412/opt/FriendlyARM/toolschain/4.5.1/arm-none-linux-gnueabi/lib/*gif*  ~/tiny4412/Day1/root_mkfs/lib
-	cp -rf ~tiny4412/opt/FriendlyARM/toolschain/4.5.1/arm-none-linux-gnueabi/sys-root/usr/lib/*jpeg* ~/tiny4412/Day1/root_mkfs/lib			
-
-
-
-=======================================================================
-		4 repeat step3 again
-=======================================================================
+		# ./fbv testimg.jpg
+		# ./fbv testimg.bmp
