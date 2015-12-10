@@ -3,32 +3,41 @@
 ===========================================================
 
 1. 	create necessary directgory
-		a )  mkdir my_rootfs
+		a )  # mkdir my_rootfs
 
-		b )  mkdir -p bin  dev  etc  home  lib  proc  root  sbin  sys  tmp  usr  var etc/init.d
+		b )  # cd my_rootfs && mkdir -p bin  dev  etc  home  lib  proc  root  sbin  sys  tmp  usr  var etc/init.d
 
-		c )  copy  rootfs_sample/etc/* ./my_rootfs/etc
-			(fstab  hostname inittab  mdev.conf  modules.conf  mtab  passwd  profile init.d/rcS)
-
-			# cp -a ~/tiny4412/Day1/root_mkfs/etc* ./my_rootfs/etc
+		c )  
+			 # cp -a ../rcS  ./etc/init.d/
+		     # cp -a ../mdev.conf  ./etc/
+		     # cp -a ../mtab  ./etc/
+		     # cp -a ../passwd  ./etc/
+		     # cp -a ../profile  ./etc/
 
 2. 	build busybox
-	
-		a )   # wget http://www.busybox.net/downloads/busybox-1.23.0.tar.bz2
+		
+		
+		a )   # cd ~/tiny4412/Day5/Day-5-RootFS/1-create_rootfs
+			  # http://www.busybox.net/downloads/busybox-1.23.0.tar.bz2
 
 		b )   # tar -xvjf  busybox-1.23.0.tar.bz2
 
 		c )   # source ~/tiny4412/set_arm_4412_toolchain_path.sh
 	
-		d )   # make menuconfig
+		d )   # cd busybox-1.23.0 && make menuconfig
+				Busybox Settings  --->
+					Build Options  ---> 
+						(arm-none-linux-gnueabi-) Cross Compiler prefix
+						
 
 		e )   # make -j4
 
 		f )   # make install (intsall ./_install)
+			  # cp -a ./_install/*  ~/tiny4412/Day5/Day-5-RootFS/1-create_rootfs/my_rootfs/
 
 3. 	copy C library to rootfs
 
-		a ) # cp -a ~/tiny4412/opt/FriendlyARM/toolschain/4.5.1/arm-none-linux-gnueabi/sys-root/lib  ~/tiny4412/Day5/Day-5-RootFS/1-create_rootfs/my_rootfs/lib
+		a ) # cp -a ~/tiny4412/opt/FriendlyARM/toolschain/4.5.1/arm-none-linux-gnueabi/sys-root/lib/*  ~/tiny4412/Day5/Day-5-RootFS/1-create_rootfs/my_rootfs/lib/
 
 4. 	change u-boot parameters about rootfs
 
@@ -44,7 +53,7 @@
 		c )	# sudo mknod null c 1 3
 
 
-6.	update my_rootfs to  /etc/exports
+6.	update my_rootfs to /etc/exports
 	Please check 
 	/home/slash/tiny4412/Day1/Day-1-Develop_Env_exerise/NFS_setting.txt
 
@@ -54,12 +63,12 @@
 			1. sudo apt-get install nfs-kernel-server nfs-common portmap
 			
 			2. configure portmap
-			1.	sudo vim /etc/default/portmap
-			2.	del 127.0.0.1
+				a.	sudo vim /etc/default/portmap
+				b.	del 127.0.0.1
 			
 			3. comfigure exports
-			1.	sudo gedit /etc/exports
-			2.	add ur share file forder
+				a.	sudo gedit /etc/exports
+				b.	add ur share file forder
 			
 			example :
 				/home/cadtc/tiny4412/Day1/root_mkfs *(rw,sync,no_root_squash)
@@ -68,17 +77,16 @@
 			
 			4. restart 
 			
-			1.	sudo /etc/init.d/portmap restart
-			2.	sudo /etc/init.d/nfs-kernel-server restart 
+				a.	sudo /etc/init.d/portmap restart
+				b.	sudo /etc/init.d/nfs-kernel-server restart 
 			
 			5. Host :
 				ifconfig ethx 192.168.0.10
 			
 			6.	sudo tar -xvjf root_mkfs.tar.bz2
-			
-			
+						
 			7. local test
-			1.	sudo mount -t nfs 192.168.0.10:/home/cadtc/tiny4412/Day1/root_mkfs /mnt/
+				a.	sudo mount -t nfs 192.168.0.10:/home/cadtc/tiny4412/Day1/root_mkfs /mnt/
 			
 			8.	ls -l /mnt
 			
