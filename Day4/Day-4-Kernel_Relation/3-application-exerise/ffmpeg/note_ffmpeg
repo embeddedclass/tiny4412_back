@@ -11,7 +11,7 @@
 ========================================================================
 
 6.	
-	./configure --cross-prefix=arm-linux-gnueabihf- --enable-cross-compile --target-os=linux --cc=arm-linux-gcc --arch=arm --cpu=armv5te --prefix=/home/slash/tiny4412/Day1/root_mkfs/usr/local/ffmpeg --enable-shared --disable-static --enable-gpl --enable-ffmpeg --disable-ffplay --disable-ffserver --enable-swscale --enable-pthreads --disable-armv5te --disable-yasm --disable-stripping --enable-gpl --disable-network --enable-avfilter
+	./configure --cross-prefix=arm-none-linux-gnueabi- --enable-cross-compile --target-os=linux --cc=arm-linux-gcc --arch=arm --cpu=armv5te --prefix=/home/cadtc/tiny4412/Day1/root_mkfs/usr/local/ffmpeg --enable-shared --disable-static --enable-gpl --enable-ffmpeg --disable-ffplay --disable-ffserver --enable-swscale --enable-pthreads --disable-armv5te --disable-yasm --disable-stripping --enable-gpl --disable-network --enable-avfilter
 
 
 
@@ -22,29 +22,24 @@
 	
 7.
 
-	a.	make -j4
+	a )	make -j4
 
 *	[ Target ]
-	b.	mkdir usr/local/ffmpeg
+	b )	mkdir usr/local/ffmpeg
 
 ========================================================================
 						install and test
 ========================================================================
 8.
 	a )	make install
-
+	
 
 [ Target ]
 9.
 	a)
-		export PATH:$PATH:/usr/local/ffmpeg
+		export PATH=$PATH:/usr/local/ffmpeg/bin
 		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/ffmpeg/lib
 	
 	b )	TEST
-
-		Video to mp3
-		ffmpeg -i filename.mp4 filename.mp3
-		
 		record video 
-		ffmpeg -f video4linux2 -s 320x240 -r 10 -i /dev/video0  /slash.avi	--->mpeg4
-		ffmpeg -f video4linux2 -s 320x240 -r 20 -i /dev/video0  /slash.mpeg	--->mpeg1
+		ffmpeg -f video4linux2 -s 320x240 -r 50 -i /dev/video15  /slash.mpeg
