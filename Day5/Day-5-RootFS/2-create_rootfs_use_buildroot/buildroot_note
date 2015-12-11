@@ -52,10 +52,14 @@ l ) modify etc/passwd file
 m ) add init process in etc/init.d
 	cd etc/init.d
 	sudo vim S00init, paste below :
+<<<<<<< HEAD
 
 ########################################################################
 #                                 Start
 ########################################################################	
+=======
+	
+>>>>>>> e33c8e59a10915af6cfc00764391acf9615a663c
 #!/bin/sh
 #
 # Start init
@@ -88,7 +92,11 @@ start() {
 	/bin/sh /etc/modules.conf
 
 	/sbin/getty -L ttySAC0 115200 vt100 
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> e33c8e59a10915af6cfc00764391acf9615a663c
 	echo "OK"
 }
 
@@ -116,11 +124,15 @@ case "$1" in
 esac
 
 exit $?
+<<<<<<< HEAD
 ########################################################################
 #                                 End
 ########################################################################
 
 
+=======
+	
+>>>>>>> e33c8e59a10915af6cfc00764391acf9615a663c
 	# sudo 777 chmod S00init
 
 n ) update build_root rootfs to  /etc/exports
