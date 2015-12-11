@@ -8,29 +8,17 @@
 		b )  # cd my_rootfs && mkdir -p bin  dev  etc  home  lib  proc  root  sbin  sys  tmp  usr  var etc/init.d
 
 		c )  
-<<<<<<< HEAD
-			 # cp -a ../etc/rcS  ./etc/init.d/
-		     # cp -a ../etc/mdev.conf  ./etc/
-		     # cp -a ../etc/mtab  ./etc/
-		     # cp -a ../etc/passwd  ./etc/
-		     # cp -a ../etc/profile  ./etc/
-=======
 			 # cp -a ../rcS  ./etc/init.d/
 		     # cp -a ../mdev.conf  ./etc/
 		     # cp -a ../mtab  ./etc/
 		     # cp -a ../passwd  ./etc/
 		     # cp -a ../profile  ./etc/
->>>>>>> e33c8e59a10915af6cfc00764391acf9615a663c
 
 2. 	build busybox
 		
 		
 		a )   # cd ~/tiny4412/Day5/Day-5-RootFS/1-create_rootfs
-<<<<<<< HEAD
 			  # wget --no-check-certificate http://www.busybox.net/downloads/busybox-1.23.0.tar.bz2
-=======
-			  # http://www.busybox.net/downloads/busybox-1.23.0.tar.bz2
->>>>>>> e33c8e59a10915af6cfc00764391acf9615a663c
 
 		b )   # tar -xvjf  busybox-1.23.0.tar.bz2
 
