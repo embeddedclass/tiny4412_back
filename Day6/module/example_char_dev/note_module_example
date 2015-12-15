@@ -1,0 +1,18 @@
+a.
+	[ Host ]
+		1.	# cd /home/xlloss/tiny4412/Day6/module/example_char_dev
+			# cd led_driver
+			# make
+			# cp leds-tiny4412-char.ko ~/tiny4412/Day1/root_mkfs/lib/modules/3.5.0-FriendlyARM/kernel/drivers/char/
+		
+		2.	# cd ~/tiny4412/Day6/module/example_char_dev/example_app
+			# make
+			# cp ./led ~/tiny4412/Day1/root_mkfs
+	[ Target ]
+	
+		3.	# depmod -n
+			# depmod
+		
+		4.	# modprobe leds-tiny4412-char
+		
+		5.	# led
