@@ -1,14 +1,39 @@
 a.
 	[ Host ]
-		1.	# cd /home/xlloss/tiny4412/Day6/module/example_char_dev
-			# cd led_driver
-			# make
-			# cp leds-tiny4412-char.ko ~/tiny4412/Day1/root_mkfs/lib/modules/3.5.0-FriendlyARM/kernel/drivers/char/
+		1. cd /home/cadtc/tiny4412/Day6/module/example_char_dev/led_driver
+		2. cp ./leds-tiny4412-char.c ~/tiny4412/Day4/linux_3.5.0_tiny4412/drivers/char/
+		3. ~/tiny4412/Day4/linux_3.5.0_tiny4412/drivers/char/
+		4. geany Kconfig
 		
-		2.	# cd ~/tiny4412/Day6/module/example_char_dev/example_app
-			# make
-			# cp ./led ~/tiny4412/Day1/root_mkfs
-	[ Target ]
+		config SLASH_LED
+			tristate "My LED Support for Tiny4412 LED"
+		
+		
+		5. geany Makefile
+		
+		obj-$(CONFIG_SLASH_LED)	+= leds-tiny4412-char.o
+		
+		
+		6. 
+			a. cd to kernel source tree
+			b. make menuconfig
+			c. make modules
+			
+		7. cp -a drivers/char/leds-tiny4412-char.ko ~/tiny4412/Day1/root_mkfs/lib/modules/3.5.0-FriendlyARM/kernel/drivers/char/
+		
+		[ Target ]
+		
+		8. depmod
+		
+		9. modprobe leds-tiny4412-char
+		
+		App
+		
+		1. cd /home/cadtc/tiny4412/Day6/module/example_char_dev/example_app/leds
+		2. make 
+		3. sudo cp -a ./led ~/tiny4412/Day1/root_mkfs
+
+	
 	
 		3.	# depmod -n
 			# depmod
